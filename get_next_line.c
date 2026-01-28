@@ -16,7 +16,10 @@ char	*update_box(char *box)
 	}
 	new_box = malloc(sizeof(char) * (ft_strlen(box) - i + 1));
 	if (!new_box)
+	{
+		free(box);
 		return (NULL);
+	}
 	i++;
 	j = 0;
 	while (box[i])
@@ -32,7 +35,7 @@ char	*extract_line(char *box)
 	char	*str;
 
 	i = 0;
-	if (!box[i])
+	if (!box || !box[i])
 		return (NULL);
 	while (box[i] && box[i] != '\n')
 		i++;
@@ -54,13 +57,14 @@ char	*extract_line(char *box)
 char	*get_next_line(int fd)
 {
 	static char	*box;
-	char		*line;
 	char		*buffer;
+	char		*line;
+	char		*temp;
 	int			read_bytes;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
 	read_bytes = 1;
@@ -70,10 +74,14 @@ char	*get_next_line(int fd)
 		if (read_bytes == -1)
 		{
 			free(buffer);
+			free(box);
+			box = NULL;
 			return (NULL);
 		}
 		buffer[read_bytes] = '\0';
-		box = ft_strjoin(box, buffer);
+		temp = box;
+		box = ft_strjoin(temp, buffer);
+		free(temp);
 	}
 	free(buffer);
 	line = extract_line(box);
