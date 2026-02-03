@@ -67,7 +67,7 @@ int main(void)
 The implementation is based on a static buffer that stores unread data between function
 calls.
 
-Step-by-step logic
+Step-by-step logic :
 
 Read from the file descriptor
 
