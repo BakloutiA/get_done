@@ -30,7 +30,7 @@ cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c
 
 
 
-Mandatory files:
+## Mandatory files:
 
 - get_next_line.c
 
@@ -62,7 +62,7 @@ int main(void)
 ```
 
 
-Algorithm Explanation
+## Algorithm Explanation
 
 The implementation is based on a static buffer that stores unread data between function
 calls.
@@ -97,7 +97,7 @@ This approach ensures minimal reading, correct memory management, and compliance
 the project constraints.
 
 
-Resources
+## Resources
 
 man read
 
