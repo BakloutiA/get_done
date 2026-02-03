@@ -26,6 +26,8 @@ The project must be compiled with the following flags:
 
 ```bash
 cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c
+```
+
 
 
 Mandatory files:
@@ -38,6 +40,7 @@ Mandatory files:
 
 # main usage example
 
+```bash
 #include <fcntl.h>
 #include <stdio.h>
 #include "get_next_line.h"
@@ -55,6 +58,8 @@ int main(void)
     close(fd);
     return 0;
 }
+
+```
 
 
 Algorithm Explanation
